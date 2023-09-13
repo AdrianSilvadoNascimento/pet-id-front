@@ -1,0 +1,45 @@
+<section id="info-pet">
+  <div *ngIf="pet">
+		<div class="action-buttons">
+			<a routerLink="/" class="icon-arrow">
+				<fa-icon [icon]="faArrowLeftLong" size="xl"></fa-icon>
+			</a>
+      <ng-container>
+        <div class="del-edit">
+          <a [routerLink]="'/pet-edit/' + pet.id" class="icon-arrow">
+            <fa-icon [icon]="faPenToSquare" size="xl"></fa-icon>
+          </a>
+          <a (click)="deletePet(pet.id)" class="icon-arrow">
+            <fa-icon [icon]="faTrash" size="xl"></fa-icon>
+          </a>
+        </div>
+      </ng-container>
+		</div>
+    <div
+      class="pet-image-test"
+      [style]="{'background-image': 'url(' + pet.petImage + ')'}"
+    >
+    </div>
+    <div class="pet-infos">
+      <div class="infos">
+        <fa-icon [icon]="fapaw" size="xl"></fa-icon>
+        <span> {{ pet.name }} </span>
+      </div>
+      <div class="infos">
+        <fa-icon [icon]="favenus" size="xl"></fa-icon>
+        <span> {{ pet.gender }}</span>
+      </div>
+      <div class="infos">
+        <fa-icon [icon]="facalendar" size="xl"></fa-icon>
+        <span> {{ pet.age }}</span>
+      </div>
+    </div>
+    <div>
+      <h3 id="lists-info">Informações do Pet</h3>
+      <ul id="lists-list">
+        <li>Raça - {{ pet.breed }}</li>
+        <li>O animal está em casa - {{ pet.isInHome }}</li>
+      </ul>
+    </div>
+  </div>
+</section>

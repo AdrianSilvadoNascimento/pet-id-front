@@ -1,0 +1,40 @@
+<section class="pets-list">
+  <h3>{{ listType }}</h3>
+  <div class="spacer">
+    <article class="pets-card">
+      <ng-container *ngFor="let pet of petList">
+        <div *ngIf="!showAddButton; else selectLostPet">
+          <a class="pet-perfil" [routerLink]="'/info-pet/' + pet.id">
+            <div
+              [class]="isUserPets ? 'user-pet-card-background' : 'card-background'"
+              [ngStyle]="{ 'background-image': 'url('+ pet.petImage +')' }"
+            >
+              <div class="card">
+                <p *ngIf="!isUserPets">{{pet.name}} - {{pet.age}}</p>
+              </div>
+            </div>
+          </a>
+        </div>
+        <ng-template #selectLostPet>
+          <a class="pet-perfil" (click)="addLostPet(pet.id)">
+            <div
+              [class]="isUserPets ? 'user-pet-card-background' : 'card-background'"
+              [ngStyle]="{
+                'background-image': 'url(' + pet.petImage + ')',
+                'filter': selectedPetId === pet.id ? 'grayscale(100%)' : 'none'
+              }"
+            >
+              <div class="card">
+                <p *ngIf="!isUserPets">{{pet.name}} - {{pet.age}}</p>
+              </div>
+            </div>
+          </a>
+        </ng-template>
+      </ng-container>
+    </article>
+
+    <a *ngIf="showAddButton ? !showAddButton : isUserPets " routerLink="/pet-register" class="new-button">
+      <fa-icon [icon]="faPlus" class="icon"></fa-icon>
+    </a>
+  </div>
+</section>

@@ -1,0 +1,217 @@
+<section id="user-form" *ngIf="formPet">
+  <div
+    class="tooltip"
+    matTooltip="Para maior precisão, adicione imagens de boa qualidade de no máximo 500px."
+  >
+    <fa-icon class="info-icon" [icon]="faInfo" size="xl"></fa-icon>
+  </div>
+
+  <mat-stepper orientation="vertical" #stepper>
+    <mat-step [stepControl]="formPet" label="Foto de Perfil">
+      <form [formGroup]="formPet">
+        <div class="photo">
+          <label class="custom-file-input">
+            <div class="profile-image">
+              <img
+                [src]="showSelectedImage"
+                *ngIf="showSelectedImage"
+                alt="Imagem Selecionada"
+              />
+              <span>
+                <fa-icon [icon]="faCamera" size="2xl"></fa-icon>
+              </span>
+              <input
+                type="file"
+                (change)="onFileSelected($event)"
+                name="petImage"
+                id="petImage"
+                formControlName="petImage"
+                accept="image/*"
+                required
+              />
+            </div>
+          </label>
+        </div>
+
+        <div class="action-buttons" *ngIf="showSelectedImage">
+          <a class="exclude-image" mat-raised-button (click)="excludeImage()">
+            Excluir Imagem
+          </a>
+
+          <a
+            class="exclude-image"
+            mat-raised-button
+            (click)="onChangeImageClick()"
+          >
+            Alterar Imagem
+          </a>
+        </div>
+        <p *ngIf="errorMessage">{{ errorMessage }}</p>
+
+        <button *ngIf="showSelectedImage" mat-raised-button matStepperNext>
+          Próximo
+        </button>
+        </form>
+      </mat-step>
+      <mat-step [stepControl]="formPet" label="Foto Distante">
+        <form [formGroup]="formPet">
+          <div class="photo">
+            <label class="custom-file-input">
+              <div class="profile-image">
+                <img
+                  [src]="showSelectedDistantImage"
+                  *ngIf="showSelectedDistantImage"
+                  alt="Imagem Selecionada"
+                />
+                <span>
+                  <fa-icon [icon]="faCamera" size="2xl"></fa-icon>
+                </span>
+                <input
+                  type="file"
+                  (change)="onDistantImageSelected($event)"
+                  name="petImageDistant"
+                  id="petImageDistant"
+                  formControlName="petImageDistant"
+                  accept="image/*"
+                  required
+                />
+              </div>
+            </label>
+          </div>
+
+          <div class="action-buttons" *ngIf="showSelectedDistantImage">
+            <a
+              class="exclude-image"
+              mat-raised-button
+              (click)="excludeImage(true)"
+            >
+              Excluir Imagem
+            </a>
+
+            <a
+              class="exclude-image"
+              mat-raised-button
+              (click)="onChangeImageClick()"
+            >
+              Alterar Imagem
+            </a>
+          </div>
+          <p *ngIf="errorMessage">{{ errorMessage }}</p>
+
+          <div class="action-buttons" *ngIf="showSelectedDistantImage">
+            <button mat-raised-button matStepperPrevious>Voltar</button>
+            <button mat-raised-button matStepperNext>Próximo</button>
+          </div>
+        </form>
+      </mat-step>
+    <mat-step [stepControl]="formPet" label="Dados do PET">
+      <form [formGroup]="formPet" (ngSubmit)="onSubmit()">
+        <div id="last-form">
+          <mat-form-field appearance="outline">
+            <mat-label for="name">Nome</mat-label>
+            <input
+              matInput
+              type="text"
+              class="form-control"
+              name="name"
+              id="name"
+              formControlName="name"
+              required
+            />
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label for="breed">Raça</mat-label>
+            <input
+              name="breed"
+              id="breed"
+              matInput
+              placeholder="Pesquisar"
+              formControlName="breed"
+              [matAutocomplete]="auto"
+              (input)="onSearchInputChange($event)"
+            />
+            <mat-autocomplete #auto="matAutocomplete">
+              <mat-option
+                *ngFor="let option of filteredRacaOptions"
+                [value]="option"
+              >
+                {{ option }}
+              </mat-option>
+            </mat-autocomplete>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label for="age">Idade</mat-label>
+            <input
+              matInput
+              type="number"
+              class="form-control"
+              name="age"
+              id="age"
+              max="30"
+              formControlName="age"
+              required
+              step="any"
+            />
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Qual o sexo do pet?</mat-label>
+            <mat-select
+              class="form-control"
+              name="gender"
+              id="gender"
+              formControlName="gender"
+              required
+            >
+              <mat-option
+                *ngFor="let option of genderOptions"
+                [value]="option.value"
+              >
+                {{ option.html }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Seu PET é dócil?</mat-label>
+            <mat-select
+              class="form-control"
+              name="isDocile"
+              id="isDocile"
+              formControlName="isDocile"
+              required
+            >
+              <mat-option *ngFor="let option of options" [value]="option.value">
+                {{ option.html }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <div class="action-buttons">
+            <button mat-raised-button color="warn" (click)="return()">
+              Cancelar
+            </button>
+            <button
+              mat-raised-button
+              color="primary"
+              type="submit"
+              [disabled]="
+                (!showSelectedImage && !showSelectedDistantImage) ||
+                formPet.get('name')?.value === '' ||
+                formPet.get('breed')?.value === '' ||
+                formPet.get('gender')?.value === '' ||
+                formPet.get('isDocile')?.value === '' ||
+                (selectedImage && selectedImage.size === 0) ||
+                (selectedDistantImage && selectedDistantImage.size === 0)
+              "
+            >
+              {{ saveButton }}
+            </button>
+          </div>
+        </div>
+      </form>
+    </mat-step>
+  </mat-stepper>
+</section>

@@ -1,0 +1,18 @@
+<section id="header" *ngIf="showHeader">
+  <p class="address">{{ userAddress }}</p>
+  <article class="header-bar">
+    <nav class="menu-mobile">
+      <a [matMenuTriggerFor]="menuMobile">
+        <span><fa-icon [icon]="faBars" [size]="'xl'"></fa-icon></span>
+      </a>
+      <mat-menu #menuMobile="matMenu" class="menu-container" [overlapTrigger]="false">
+        <button routerLinkActive="active" routerLink="/" mat-menu-item>Home</button>
+        <button routerLinkActive="active" mat-menu-item>Meus Pets</button>
+        <button routerLinkActive="active" mat-menu-item>Perfil</button>
+        <button mat-menu-item (click)="checkout()">Sair</button>
+      </mat-menu>
+    </nav>
+    <span><fa-icon [icon]="faBell" [size]="'xl'"></fa-icon></span>
+  </article>
+  <app-action-buttons></app-action-buttons>
+</section>

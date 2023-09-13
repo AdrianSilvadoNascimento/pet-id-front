@@ -1,0 +1,112 @@
+#plans {
+  width: 100%;
+  margin-top: 80px;
+
+  .plan-merchan, .card-header, .card-footer {
+    margin: 0 auto;
+  }
+
+  .plan-merchan, .list-item {
+    text-align: left !important;
+  }    
+
+  .plan-card {
+    position: relative;
+    width: 320px;
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 8px;
+    padding: 15px;
+    margin: 60px auto;
+    .plan-badge {
+      position: absolute;
+      top: 0;
+      right: 0;
+      background-color: #7DFA51;
+      color: #fff;
+      font-weight: bold;
+      padding: 6px 12px;
+      border-radius: 0 0 0 8px;
+      box-shadow: 0 1px 1px rgba(0, 0, 0, 0.25);
+      z-index: 1;
+    }
+    .card-header {
+      width: 95%;
+      text-align: center;
+      border-bottom: 1px solid #DADADA;
+      h2 {
+        color: #f8be28;
+        font-weight: bold;
+      }
+      h2.silver-plan-title {
+        color: #9D9D9D;
+      }
+      h2.bronze-plan-title {
+        color: #EF9103;
+      }
+    }
+    .card-body {   
+      p {
+        text-align: center;
+        color: #9D9D9D;
+      }
+      .list-benefits {
+        width: 95%;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: flex-start;
+        .list-bullet {
+          margin-right: 8px;
+          width: 10px;
+          height: 10px;
+          border-radius: 50%;
+          background-color: #f8be28;
+        }
+        .silver-plan-bullet {
+          background-color: #9D9D9D;
+        }
+        .bronze-plan-bullet {
+          background-color: #EF9103;
+        }
+      }
+    }
+    .bronze-plan {
+      margin-bottom: 65px;
+    }
+    .card-footer {
+      position: relative;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 95%;
+      .plan-value {
+        h3 {
+          font-size: 22px;
+          font-weight: bold;
+          color: #f8be28;
+          span {
+            font-size: 14px;
+          }
+        }
+        h3.silver-plan-value {
+          color: #9D9D9D;
+        }
+        h3.bronze-plan-value {
+          color: #EF9103;
+        }
+        h4 {
+          font-weight: 500;
+          color: #9D9D9D;
+        }
+      }
+      button {
+        border-radius: 8px;
+        background-color: #7DFA51;
+        color: #fff;
+        font-weight: bold;
+        height: 60px;
+        width: 100px;
+      }
+    }
+  }
+}

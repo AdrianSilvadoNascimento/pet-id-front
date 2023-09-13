@@ -1,0 +1,25 @@
+<section id="lost-pet">
+  <h2>
+    Qual pet você perdeu?
+    <span class="tooltip" matTooltip="Basta clicar no pet"><fa-icon [icon]="faInfo" size="lg"></fa-icon></span>
+  </h2>
+  <app-pets-list
+    listType="Meus Pets"
+    [petList]="lostPets"
+    [isUserPets]="true"
+    [showAddButton]="true"
+    (lostPet)="addLostPet($event)"
+  >
+  </app-pets-list>
+  
+  <h3>Onde perdeu?</h3>
+  <div id="lostPetMap"></div>
+
+  <button
+    type="submit"
+    mat-raised-button color="warn"
+    (click)="submitLostPet()"
+  >
+    Alertar
+  </button>
+</section>

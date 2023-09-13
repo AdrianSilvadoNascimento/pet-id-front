@@ -1,0 +1,74 @@
+#user-form, #register-address {
+  position: relative;
+  width: 85%;
+  margin: 40px 15px;
+  padding: 10px;
+  border-radius: 8px;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+
+  form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
+    .custom-file-input {
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+      background-color: transparent;
+      border: none;
+      padding: 0;
+      margin-bottom: 15px;
+    }
+    
+    .custom-file-input input[type="file"] {
+      position: absolute;
+      left: 0;
+      top: 0;
+      opacity: 0;
+      width: 100%;
+      height: 100%;
+      cursor: pointer;
+    }
+    
+    .profile-image {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      background-color: #D9D9D9;
+      color: #FFF;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .profile-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    
+    .profile-image span {
+      position: absolute;
+      text-align: center;
+    }
+    
+    .profile-image:hover {
+      background-color: #A6A6A6;
+    }
+    
+    .exclude-image {
+      margin-bottom: 15px;
+    }
+  
+    .action-buttons {
+      width: 90%;
+      display: flex;
+      justify-content: space-between;
+    }
+  }
+}

@@ -1,0 +1,80 @@
+<section id="found-pet">
+  <form [formGroup]="formFoundPet" (ngSubmit)="onSubmit()">
+    <mat-stepper orientation="vertical" #stepper>
+      <mat-step [stepControl]="formFoundPet" label="Onde encontrou?">
+        <span>Se preferir, busque no mapa</span>
+        <div id="addressMap"></div>
+
+        <div class="action-button">
+          <button class="save-button" type="button" *ngIf="address" mat-raised-button matStepperNext>Próximo</button>
+        </div>
+      </mat-step>
+      <mat-step [stepControl]="formFoundPet" label="Foto do PET">
+        <div class="photo">
+          <label class="custom-file-input">
+            <div class="profile-image">
+              <img
+                [src]="showSelectedImage"
+                *ngIf="showSelectedImage"
+                alt="Imagem Selecionada"
+              />
+              <span>
+                <fa-icon [icon]="faCamera" size="2xl"></fa-icon>
+              </span>
+              <input
+                type="file"
+                (change)="onFileSelected($event)"
+                name="petImage"
+                id="petImage"
+                formControlName="petImage"
+                accept="image/*"
+                required
+              />
+            </div>
+          </label>
+        </div>
+  
+        <div class="action-buttons" *ngIf="showSelectedImage">
+          <a class="exclude-image" mat-raised-button (click)="excludeImage()">
+            Excluir Imagem
+          </a>
+  
+          <a
+            class="exclude-image"
+            mat-raised-button
+            (click)="onChangeImageClick()"
+          >
+            Alterar Imagem
+          </a>
+        </div>
+        <p *ngIf="errorMessage">{{ errorMessage }}</p>
+        <p *ngIf="!address && showSelectedImage"></p>
+  
+        <div class="action-button">
+          <button
+            class="save-button"
+            type="submit"
+            *ngIf="showSelectedImage && address"
+            mat-raised-button matStepperNext
+          >
+            Cadastrar
+          </button>
+        </div>        
+      </mat-step>
+      <mat-step [stepControl]="formFoundPet" label="Concluir">
+        <div class="card">
+          <h2>
+            Parabéns!
+          </h2>
+          <p>
+            Você acaba de contruir na busca de um PET muito querido!
+          </p>
+        </div>
+
+        <div class="action-button">
+          <button mat-raised-button class="save-button" (click)="resetForm()">Concluir</button>
+        </div>
+      </mat-step>
+    </mat-stepper>
+  </form>
+</section>

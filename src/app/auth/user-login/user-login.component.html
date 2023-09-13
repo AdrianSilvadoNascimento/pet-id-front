@@ -1,0 +1,51 @@
+<section id="login-section">
+  <div class="login">
+    <h1 id="header">PET ID</h1>
+  
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+      <mat-form-field appearance="outline" color="primary" class="specific-login">
+        <mat-label for="email">Usuário</mat-label>
+        <input
+          matInput
+          type="email"
+          class="form-control"
+          name="email"
+          id="email"
+          formControlName="email"
+          required
+        />
+      </mat-form-field>
+  
+      <mat-form-field appearance="outline" color="primary" class="specific-login">
+        <mat-label for="password">Senha</mat-label>
+        <input
+          matInput
+          type="password"
+          class="form-control"
+          name="password"
+          id="password"
+          formControlName="password"
+          required
+        />
+      </mat-form-field>
+  
+      <article class="aux-links">
+        <a class="links" routerLink="../user-register">
+          Não possui uma conta?
+        </a>
+        <!-- <a class="links" routerLink="/">
+          Esqueceu a senha?
+        </a> -->
+      </article>
+
+      <button 
+        type="submit" 
+        mat-raised-button 
+        [class]="loginForm.valid ? 'login-button' : 'disabled-button'"
+        [disabled]="!loginForm.valid"
+      >
+        Entrar      
+      </button>
+    </form>
+  </div>
+</section>

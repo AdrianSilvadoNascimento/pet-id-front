@@ -1,0 +1,59 @@
+.pets-list {
+  margin: 40px 0;
+  .spacer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    .pets-card {
+      width: 85%;
+      overflow-x: auto;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      .pet-perfil {
+        text-decoration: none;
+      }
+      .user-pet-card-background {
+        box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        background-position: center;
+        background-size: cover;
+        background-repeat: no-repeat;
+        margin-right: 10px;
+        .card {
+          width: 80px;
+          height: 80px;
+          display: flex;
+          align-items: flex-end;
+          justify-content: center;
+          p {
+            color: white;
+            font-weight: bold;
+          }
+        }
+      }
+      .card-background {
+        box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+        border-radius: 8px;
+        background-position: center;
+        background-size: cover;
+        background-repeat: no-repeat;
+        margin-right: 10px;
+        .card {
+          width: 100px;
+          height: 115px;
+          display: flex;
+          align-items: flex-end;
+          justify-content: center;
+          p {
+            color: white;
+            font-weight: bold;
+          }
+        }
+      }
+    }
+  }
+}

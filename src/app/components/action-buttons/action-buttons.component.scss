@@ -1,0 +1,40 @@
+section {
+  margin-top: 30px;
+  width: 100%;
+  justify-content: space-between;
+  display: flex;
+
+  .actions {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+    a {
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .buttons {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+
+      h3 {
+        margin-left: 10px;
+      }
+    }
+		
+		#lost-pet {
+			color: #ff2828;
+			background-color: #f39494;
+		}
+	
+		#find-pet {
+			color: #f8be28;
+			background-color: #fdebbe;
+		}
+	}
+}

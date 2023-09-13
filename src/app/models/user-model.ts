@@ -1,0 +1,21 @@
+export class UserModel {
+  id: string = ''
+  name: string = ''
+  last_name: string = ''
+  cpf: string = ''
+  age: number = 0
+  email: string = ''
+  phone_number: string = ''
+  userImage: string = ''
+  password: string = ''
+  confirm_password?: string = ''
+  coords: string = ''
+  city: string = ''
+  cep_number: string = ''
+  house_number: string = ''
+  street_name: string = ''
+  complement: string = ''
+  uf: string = ''
+  neighborhood: string = ''
+  plan: string = ''
+}
