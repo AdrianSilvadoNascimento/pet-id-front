@@ -202,17 +202,17 @@ export class PetFormComponent implements OnInit {
       this.petService.updatePet(PET, selectedImage, selectedDistantImage, this.petId).subscribe(() => {
         this.excludeImage()
         this.createForm(new PetModel())
-        console.log('Pet atualizado com sucesso!')
-      }, () => {
-        console.error('Ocorreu algum problema!')
+        alert('Pet atualizado com sucesso!')
+      }, err => {
+        alert(err.error.message)
       })
     } else {
       this.petService.registerPet(PET, selectedImage, selectedDistantImage).subscribe(() => {
         this.excludeImage()
         this.createForm(new PetModel())
-        console.log('Pet registrado com sucesso!')
-      }, () => {
-        console.error('Ocorreu algum problema!')
+        alert('Pet registrado com sucesso!')
+      }, err => {
+        alert(err.error.message)
       })
     }
   }
