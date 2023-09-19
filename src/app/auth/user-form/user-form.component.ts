@@ -58,7 +58,9 @@ export class UserFormComponent implements OnInit, AfterViewInit {
       // USER.perfil_img = await this.imageConversor.convertToBase64(this.perfilImage)
 
       this.userService.registerUser(USER).subscribe(() => {
-        console.log('Registrado com sucesso')
+        alert('Registrado com sucesso')
+      }, err => {
+        alert(err.error.message)
       })
     }
   }
