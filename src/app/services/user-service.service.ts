@@ -1,11 +1,10 @@
 import { Injectable } from '@angular/core'
-import { HttpClient, HttpHeaders } from '@angular/common/http'
-import { Observable, map, tap } from 'rxjs'
+import { HttpClient } from '@angular/common/http'
+import { Observable, tap } from 'rxjs'
 import { Router } from '@angular/router'
 
 import { environment } from 'src/environments/environment'
 import { UserModel } from '../models/user-model'
-import { UserInfo } from '../models/user-info-model'
 
 @Injectable({
   providedIn: 'root',
@@ -28,7 +27,7 @@ export class UserService {
     const body = {...userModel }
     delete body.confirm_password
 
-    return this.http.post<UserModel>(url, JSON.stringify(body)).pipe(
+    return this.http.post<UserModel>(url, body).pipe(
       tap(() => {
         this.router.navigate(['/user-login'])
       })
@@ -57,6 +56,12 @@ export class UserService {
 
   checkout(): void {
     localStorage.removeItem('userId')
+    localStorage.removeItem('token')
+    localStorage.removeItem('user')
+    localStorage.removeItem('plan')
+    localStorage.removeItem('petQuantity')
+    localStorage.removeItem('userGeo')
+
     setTimeout(() => {
       this.router.navigate(['user-login'])
     }, 1500)

@@ -116,7 +116,7 @@ export class PetService {
     
     return this.http.get<PetModel[]>(url).pipe(
       tap(res => {
-        localStorage.setItem('petQuantity:', res.length.toString())
+        localStorage.setItem('petQuantity', res.length.toString())
       })
     )
   }

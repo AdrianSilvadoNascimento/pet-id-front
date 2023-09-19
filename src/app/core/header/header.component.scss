@@ -18,6 +18,10 @@
   #header {
     .header-bar {
       display: flex;
+
+      .menu-mobile {
+        cursor: pointer;
+      }
     }
   }
 }

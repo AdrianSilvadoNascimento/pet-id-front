@@ -8,16 +8,16 @@ export class AddPetGuard implements CanActivate {
   constructor(private router: Router) {}
   
   canActivate(): boolean {
-    const canAddPet = JSON.parse(localStorage.getItem('userPayInfo')!)
-
-    if (canAddPet) {
-      if (canAddPet.plan === 'silver' && canAddPet.petQuantity === 5) {
+    const plan = localStorage.getItem('plan')
+    const petQuantity = localStorage.getItem('petQuantity')
+    if (plan?.length && petQuantity?.length) {
+      if (plan === 'silver' && petQuantity === '5') {
         this.router.navigate(['/buy-a-plan'])
         return false
-      } else if (canAddPet.plan === 'bronze' && canAddPet.petQuantity === 2) {
+      } else if (plan === 'bronze' && petQuantity === '2') {
         this.router.navigate(['/buy-a-plan'])
         return false
-      } else if (!canAddPet.plan) {
+      } else if (!plan) {
         this.router.navigate(['/buy-a-plan'])
         return false
       }

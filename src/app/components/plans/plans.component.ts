@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core'
+import { Router } from '@angular/router'
 
 @Component({
   selector: 'app-plans',
@@ -7,9 +8,13 @@ import { Component, OnInit } from '@angular/core'
 })
 export class PlansComponent implements OnInit {
 
-  constructor() {}
+  constructor(private router: Router) {}
 
   ngOnInit(): void {
   }
 
+  buyPlan(plan: string): void {
+    localStorage.setItem('plan', plan)
+    this.router.navigate(['/'])
+  }
 }

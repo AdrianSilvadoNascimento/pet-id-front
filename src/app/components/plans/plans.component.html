@@ -28,7 +28,7 @@
         <h4>Plano Anual: R$ 60,00</h4>
       </div>
 
-      <button mat-button mat-raised-button>ADERIR</button>
+      <button mat-button mat-raised-button (click)="buyPlan('gold')">ADERIR</button>
     </div>
   </div>
   <div class="plan-card">
@@ -59,7 +59,7 @@
         <h4>Plano Anual: R$ 36,00</h4>
       </div>
 
-      <button mat-button mat-raised-button>ADERIR</button>
+      <button mat-button mat-raised-button (click)="buyPlan('silver')">ADERIR</button>
     </div>
   </div>
   <div class="plan-card">
@@ -86,7 +86,7 @@
         <h4>Plano Anual: R$ 24,00</h4>
       </div>
 
-      <button mat-button mat-raised-button>ADERIR</button>
+      <button mat-button mat-raised-button (click)="buyPlan('bronze')">ADERIR</button>
     </div>
   </div>
 </section>
