@@ -39,7 +39,7 @@ export class HomePageComponent implements OnInit {
   fetchPets(): void {
     this.petService.getPetList().subscribe(response => {
       this.listUserPet = [...response]
-      this.listPetNotInHome = response.map(pet => pet).filter(pet => pet.isInHome)
+      this.listPetNotInHome = response.map(pet => pet).filter(pet => pet.isInHome == 'Não')
     }, () => {
       alert('Ocorreu algum problema!')
     })
