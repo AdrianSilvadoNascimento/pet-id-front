@@ -4,6 +4,11 @@
     <article class="pets-card">
       <ng-container *ngFor="let pet of petList">
         <div *ngIf="!showAddButton; else selectLostPet">
+          <div class="action-button">
+            <button *ngIf="!isUserPets" (click)="removePet(pet.id)" class="delete-lost-pet">
+              <span>X</span>
+            </button>
+          </div>
           <a class="pet-perfil" [routerLink]="'/info-pet/' + pet.id">
             <div
               [class]="isUserPets ? 'user-pet-card-background' : 'card-background'"

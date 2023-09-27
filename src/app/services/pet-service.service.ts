@@ -39,6 +39,17 @@ export class PetService {
     }))
   }
 
+  removeLostPet(petId: string) {
+    const url = `${this.URL}/pet/update-pet/${petId}`
+    const body = {
+      isInHome: 'Sim',
+    }
+
+    return this.http.put(url, body).pipe(tap(() => {
+      this.router.navigate(['/'])
+    }))
+  }
+
   updatePet(petModel: PetModel, petImage: string, petImageDistant: string, petId: string): Observable<PetModel> {
     const url = `${this.URL}/pet/update-pet/${petId}`
     const body = {
@@ -53,7 +64,7 @@ export class PetService {
       petImageDistant: petImageDistant,
     }
 
-    return this.http.put<PetModel>(url, JSON.stringify(body)).pipe(tap(() => {
+    return this.http.put<PetModel>(url, body).pipe(tap(() => {
       this.router.navigate([`/info-pet/${petId}`])
     }))
   }

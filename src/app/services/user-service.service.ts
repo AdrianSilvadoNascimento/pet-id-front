@@ -23,7 +23,7 @@ export class UserService {
    */
   registerUser(userModel: UserModel): Observable<UserModel> {
     const url = `${this.URL}/user/register-user`
-
+    
     const body = {...userModel }
     delete body.confirm_password
 

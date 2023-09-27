@@ -226,17 +226,12 @@ export class PetFormComponent implements OnInit {
     const file: File = event.target.files[0]
 
     if (file) {
-      if (file.size > this.maxImageSize * 1024 * 1024) {
-        this.errorMessage = 'A imagem selecionada excede o tamanho máximo permitido.'
-        this.showSelectedImage = null
-      } else {
-        const reader = new FileReader()
-        reader.readAsDataURL(file)
-        reader.onload = () => {
-          this.selectedImage = file
-          this.showSelectedImage = reader.result
-          this.errorMessage = null
-        }
+      const reader = new FileReader()
+      reader.readAsDataURL(file)
+      reader.onload = () => {
+        this.selectedImage = file
+        this.showSelectedImage = reader.result
+        this.errorMessage = null
       }
     }
   }
@@ -250,10 +245,7 @@ export class PetFormComponent implements OnInit {
     const file: File = event.target.files[0]
   
     if (file) {
-      if (file.size > this.maxImageSize * 1024 * 1024) {
-        this.errorMessage = 'A imagem selecionada excede o tamanho máximo permitido.'
-        this.showSelectedDistantImage = null
-      } else if (this.selectedImage && file.name === this.selectedImage.name) {
+      if (this.selectedImage && file.name === this.selectedImage.name) {
         this.errorMessage = 'A imagem não pode ser igual à anterior.'
         this.showSelectedDistantImage = null
       } else {
@@ -266,8 +258,7 @@ export class PetFormComponent implements OnInit {
         }
       }
     }
-  }
-  
+  }  
 
   /**
    * To change the image selected.

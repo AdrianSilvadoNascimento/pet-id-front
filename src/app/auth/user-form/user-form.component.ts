@@ -53,7 +53,7 @@ export class UserFormComponent implements OnInit, AfterViewInit {
   async onSubmit() {
     if (this.formUser?.valid) {
       const USER = this.formUser?.value
-      USER.coords = `${this.address[1].lat}:${this.address[1].lng}`
+      USER.coords = this.address ? `${this.address[1].lat}:${this.address[1].lng}` : ''
 
       // USER.perfil_img = await this.imageConversor.convertToBase64(this.perfilImage)
 

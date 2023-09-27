@@ -9,8 +9,29 @@
       overflow-x: auto;
       display: flex;
       flex-direction: row;
-      justify-content: space-between;
+      justify-content: start;
       align-items: center;
+      .action-button {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-end;
+        align-items: center;
+        .delete-lost-pet {
+          position: relative;
+          top: 20px;
+          background-color: red;
+          width: 30px;
+          height: 30px;
+          border-radius: 50%;
+          display: block;
+          border: 1px solid black;
+          cursor: pointer;
+          span {
+            color: white;
+            font-weight: bold;
+          }
+        }
+      }
       .pet-perfil {
         text-decoration: none;
       }

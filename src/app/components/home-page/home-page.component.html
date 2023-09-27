@@ -1,6 +1,5 @@
 <section id="home-body">
   <app-pets-list listType="Meus Pets" [petList]="listUserPet" [isUserPets]="true"></app-pets-list>
-  <!-- <app-pets-list listType="Pets Em Casa" [petList]="listPetInHome"></app-pets-list> -->
   <app-pets-list listType="Meus Pets Perdidos" [petList]="listPetNotInHome"></app-pets-list>
   
   <button mat-raised-button color="primary" (click)="findMyPosition()">Me encontrar</button>  
