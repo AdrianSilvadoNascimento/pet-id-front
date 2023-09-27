@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http'
 import { Injectable } from '@angular/core'
-import { Observable, tap } from 'rxjs'
+import { Observable, tap, BehaviorSubject } from 'rxjs'
 import { Router } from '@angular/router'
 
 import { environment } from 'src/environments/environment'
@@ -11,6 +11,8 @@ import { PetModel } from '../models/pet-model'
 })
 export class PetService {
   private readonly URL = environment.URL
+  private petListSubject = new BehaviorSubject<string>('')
+  petList$ = this.petListSubject.asObservable()
   
   constructor(private http: HttpClient, private router: Router) {}
 
@@ -37,6 +39,10 @@ export class PetService {
     return this.http.post(url, body).pipe(tap(() => {
       this.router.navigate(['/'])
     }))
+  }
+
+  updatePetList(petId: string) {
+    this.petListSubject.next(petId)
   }
 
   removeLostPet(petId: string) {

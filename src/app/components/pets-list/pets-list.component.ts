@@ -1,9 +1,9 @@
 import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core'
-import { Router } from '@angular/router'
 
 import { faPlus } from '@fortawesome/free-solid-svg-icons'
 import { PetModel } from 'src/app/models/pet-model'
 import { PetService } from 'src/app/services/pet-service.service'
+import { PetListService } from 'src/app/services/pet-list.service'
 
 @Component({
   selector: 'app-pets-list',
@@ -19,9 +19,14 @@ export class PetsListComponent implements OnInit {
   faPlus = faPlus
   selectedPetId: string = ''
   
-  constructor(private petService: PetService, private router: Router) {}
+  constructor(
+    private petService: PetService,
+    private petListService: PetListService) {}
 
   ngOnInit(): void {
+    this.petService.getPetList().subscribe(petList => {
+      this.petListService.updatePetList(petList)
+    })
   }
 
   addLostPet(petId: string) {
@@ -35,8 +40,12 @@ export class PetsListComponent implements OnInit {
     if (isDeleting) {
       this.petService.removeLostPet(petId).subscribe(() => {
         alert('Que bom que seu pet está em casa!')
+        // Fetch the updated pet list after removal
+        this.petService.getPetList().subscribe(petList => {
+          this.petListService.updatePetList(petList)
+        })
       }, () => {
-        alert('Ocorreu algum problema!')
+        alert('Ocorreu algum problema!');
       })
     }
   }

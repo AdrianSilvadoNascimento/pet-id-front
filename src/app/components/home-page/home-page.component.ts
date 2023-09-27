@@ -2,9 +2,7 @@ import { Component, OnInit } from '@angular/core'
 
 import { MapService } from '../../services/map-service.service'
 import { PetModel } from '../../models/pet-model'
-import { PetService } from '../../services/pet-service.service'
-import { UserService } from '../../services/user-service.service'
-import { AllPets } from '../../models/all-pets-model'
+import { PetListService } from 'src/app/services/pet-list.service'
 
 @Component({
   selector: 'app-home-page',
@@ -16,9 +14,17 @@ export class HomePageComponent implements OnInit {
   listPetNotInHome: PetModel[] = []
   listUserPet: PetModel[] = []
   
-  constructor(private petService: PetService, private mapService: MapService) {}
+  constructor(
+    private mapService: MapService,
+    private petListService: PetListService,
+  ) {}
   
   ngOnInit(): void {
+    this.petListService.petList$.subscribe(petList => {
+      this.listUserPet = [...petList]
+      this.listPetNotInHome = petList.map(pet => pet).filter(pet => pet.isInHome == 'Não')
+    })
+    
     if (localStorage.getItem('userId')) {
       this.fetchPets()
     }
@@ -37,11 +43,6 @@ export class HomePageComponent implements OnInit {
    * Fetch Pets.
    */
   fetchPets(): void {
-    this.petService.getPetList().subscribe(response => {
-      this.listUserPet = [...response]
-      this.listPetNotInHome = response.map(pet => pet).filter(pet => pet.isInHome == 'Não')
-    }, () => {
-      alert('Ocorreu algum problema!')
-    })
+    this.petListService.updatePetList(this.listUserPet)
   }
 }
